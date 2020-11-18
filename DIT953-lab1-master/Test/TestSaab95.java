@@ -1,3 +1,4 @@
+import Vehicles.Saab95;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

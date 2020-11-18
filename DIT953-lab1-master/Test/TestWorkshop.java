@@ -1,3 +1,8 @@
+import DumbAssKangarooPackage.Workshop;
+import Vehicles.Saab95;
+import Vehicles.Scania;
+import Vehicles.Vehicle;
+import Vehicles.Volvo240;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

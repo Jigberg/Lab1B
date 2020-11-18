@@ -1,8 +1,6 @@
+import DumbAssKangarooPackage.Direction;
+import Vehicles.Volvo240;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import static org.junit.Assert.*;
 

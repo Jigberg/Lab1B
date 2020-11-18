@@ -1,3 +1,4 @@
+import Vehicles.Scania;
 import org.junit.Test;
 
 

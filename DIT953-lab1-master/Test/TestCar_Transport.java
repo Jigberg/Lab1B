@@ -1,3 +1,7 @@
+import Vehicles.Car_Transport;
+import Vehicles.Saab95;
+import Vehicles.Scania;
+import Vehicles.Volvo240;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
