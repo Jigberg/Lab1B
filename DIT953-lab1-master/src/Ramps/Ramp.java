@@ -31,9 +31,9 @@ public abstract class Ramp {
         setAngle(Math.min(lowerableAngle(), angle));
         setisSecured(isSecured());
     }
+    abstract boolean isSecured();
     void setLoadableAngle(){ setAngle(getLoadableAngle()); }
     int getLoadableAngle(){ return this.loadableAngle; }
-    abstract boolean isSecured();
     int raisableAngle(){ return getMaxAngle() - getAngle(); }
     int lowerableAngle(){ return getAngle() - getMinAngle(); }
     public int getAngle(){ return this.angle; }

@@ -13,7 +13,6 @@ public abstract class Carrier<T, A>{
         this.attachedTo = attachedTo;
     }
 
-
     abstract void unload();
     abstract void load(T loadType);
     abstract boolean isLoadable(T loadType);
