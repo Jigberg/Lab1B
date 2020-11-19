@@ -1,6 +1,7 @@
 package Positions;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Movables extends Positionables {
@@ -9,8 +10,8 @@ public abstract class Movables extends Positionables {
     private double maxSpeed;
     private final List<Direction> directionList = Arrays.asList(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
 
-    public Movables(double x, double y, Direction direction, double currentSpeed, boolean isMovable, double maxSpeed) {
-        super(x, y, direction);
+    public Movables(int xPos, int yPos, Direction direction, double currentSpeed, boolean isMovable, double maxSpeed) {
+        super(xPos, yPos, direction);
         this.currentSpeed = currentSpeed;
         this.isMovable = isMovable;
         this.maxSpeed = maxSpeed;
@@ -22,52 +23,76 @@ public abstract class Movables extends Positionables {
     public void move() {
         if(getIsMovable()) {
             switch (getDirection()) {
-                case NORTH -> sety(gety() + getCurrentSpeed());
-                case EAST -> setx(getx() + getCurrentSpeed());
-                case SOUTH -> sety(gety() - getCurrentSpeed());
-                case WEST -> setx(getx() - getCurrentSpeed());
+                case Direction.NORTH -> setyPos(getyPos() + getCurrentSpeed());
+                case Direction.EAST -> setxPos(getxPos() + getCurrentSpeed());
+                case Direction.SOUTH -> setyPos(getyPos() - getCurrentSpeed());
+                case Direction.WEST -> setxPos(getxPos() - getCurrentSpeed());
+                default -> System.out.print("non valid direction!");
             }
         }
     }
-    public double getCurrentSpeed() {
+
+    /**
+     * Turns the car left.
+     */
+    public void turnLeft() {
+        Collections.rotate(getDirectionList(), 1);
+    }
+
+    /**
+     * Turns the car right.
+     */
+    public void turnRight() {
+        Collections.rotate(getDirectionList(), -1);
+    }
+
+    double getCurrentSpeed() {
         return currentSpeed;
     }
-    public double getMaxSpeed(){ return this.maxSpeed; }
+
+    double getMaxSpeed(){ return this.maxSpeed; }
+
     /**
      * Decrements the speed a specified amount.
      * Checks if current speed is in interval [0, enginePower]
      * @param currentSpeed The speed that the car already has.
      */
-    public void setCurrentSpeed(double currentSpeed) { this.currentSpeed = currentSpeed; }
-    public void changeSpeed(double amount){
-        if(!isSpeedChangeInRange(amount)){amount = setSpeedChangeInRange(amount); }
-        setCurrentSpeed(calculateSpeedChange(amount));
-    }
-    public double calculateSpeedChange(double amount){ return getCurrentSpeed() + amount; }
-    public double setSpeedChangeInRange(double amount){return getCurrentSpeed() + amount < 0 ? -getCurrentSpeed() : getMaxSpeed() - getCurrentSpeed(); }
-    public boolean isSpeedChangeInRange(double amount){ return (0 <= getCurrentSpeed() + amount && getCurrentSpeed() + amount < getMaxSpeed()); }
-    public boolean getIsMovable() { return isMovable; }
-    public void setIsMovable(boolean isMovable) { this.isMovable = isMovable; }
-    /**
-     * Turns the car left.
-     */
-    public void turnLeft() {
-        switch (getDirection()) {
-            case NORTH -> setDirection(Direction.WEST);
-            case EAST -> setDirection(Direction.NORTH);
-            case SOUTH -> setDirection(Direction.EAST);
-            case WEST -> setDirection(Direction.SOUTH);
+    void setCurrentSpeed(double currentSpeed) {
+        if(currentSpeed >= 0 && currentSpeed <=getMaxSpeed()){
+            this.currentSpeed = currentSpeed;
         }
-    }
-    /**
-     * Turns the car right.
-     */
-    public void turnRight() {
-        switch (getDirection()) {
-            case NORTH -> setDirection(Direction.EAST);
-            case EAST -> setDirection(Direction.SOUTH);
-            case SOUTH -> setDirection(Direction.WEST);
-            case WEST -> setDirection(Direction.NORTH);
+        else if(currentSpeed < 0){
+            this.currentSpeed = 0;
         }
+        else{
+            this.currentSpeed = getMaxSpeed();
+        }
+
     }
+
+    /**
+     * Increments the speed a specified amount.
+     * @param amount to increment the speed.
+     */
+    abstract void incrementSpeed(double amount);
+
+    /**
+     * Decrements the speed a specified amount.
+     * @param amount to decrement the speed.
+     */
+    abstract void decrementSpeed(double amount);
+
+    boolean getIsMovable() {
+        return isMovable;
+    }
+
+    void setIsMovable(boolean drivable) {
+        isMovable = drivable;
+    }
+
+    List<Direction> getDirectionList(){
+        return directionList;
+    }
+
+
 }
