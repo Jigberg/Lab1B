@@ -9,7 +9,7 @@ public abstract class Movables extends Positionables {
     private double maxSpeed;
     private final List<Direction> directionList = Arrays.asList(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
 
-    public Movables(int x, int y, Direction direction, double currentSpeed, boolean isMovable, double maxSpeed) {
+    public Movables(double x, double y, Direction direction, double currentSpeed, boolean isMovable, double maxSpeed) {
         super(x, y, direction);
         this.currentSpeed = currentSpeed;
         this.isMovable = isMovable;
@@ -29,49 +29,25 @@ public abstract class Movables extends Positionables {
             }
         }
     }
-
     public double getCurrentSpeed() {
         return currentSpeed;
     }
-    double getMaxSpeed(){ return this.maxSpeed; }
-
+    public double getMaxSpeed(){ return this.maxSpeed; }
     /**
      * Decrements the speed a specified amount.
      * Checks if current speed is in interval [0, enginePower]
      * @param currentSpeed The speed that the car already has.
      */
-    protected void setCurrentSpeed(double currentSpeed) {
-        if(currentSpeed >= 0 && currentSpeed <=getMaxSpeed()){
-            this.currentSpeed = currentSpeed;
-        }
-        else if(currentSpeed < 0){
-            this.currentSpeed = 0;
-        }
-        else{
-            this.currentSpeed = getMaxSpeed();
-        }
-
+    public void setCurrentSpeed(double currentSpeed) { this.currentSpeed = currentSpeed; }
+    public void changeSpeed(double amount){
+        if(!isSpeedChangeInRange(amount)){amount = setSpeedChangeInRange(amount); }
+        setCurrentSpeed(calculateSpeedChange(amount));
     }
-
-    /**
-     * Increments the speed a specified amount.
-     * @param amount to increment the speed.
-     */
-    abstract void incrementSpeed(double amount);
-
-    /**
-     * Decrements the speed a specified amount.
-     * @param amount to decrement the speed.
-     */
-    abstract void decrementSpeed(double amount);
-
-    protected boolean getIsMovable() {
-        return isMovable;
-    }
-
+    public double calculateSpeedChange(double amount){ return getCurrentSpeed() + amount; }
+    public double setSpeedChangeInRange(double amount){return getCurrentSpeed() + amount < 0 ? -getCurrentSpeed() : getMaxSpeed() - getCurrentSpeed(); }
+    public boolean isSpeedChangeInRange(double amount){ return (0 <= getCurrentSpeed() + amount && getCurrentSpeed() + amount < getMaxSpeed()); }
+    public boolean getIsMovable() { return isMovable; }
     public void setIsMovable(boolean isMovable) { this.isMovable = isMovable; }
-
-
     /**
      * Turns the car left.
      */

@@ -1,9 +1,8 @@
 package Vehicles;
 
-import Carriers.CarTransportCarrier;
 import Carriers.ICarTransportCarrier;
 import Carriers.IFerryCarrier;
-
+import Positions.Direction;
 import java.awt.*;
 
 /**
@@ -12,55 +11,28 @@ import java.awt.*;
  */
 public class Saab95 extends Vehicle implements ICarTransportCarrier, IFerryCarrier {
     private boolean turboOn;
+    private double turboValue;
 
     /**
      * Constructor for class.
      * Turns turbo off.
      */
-    public Saab95() {
-        super(125, Color.red, "Vehicles.Saab95");
-        turboOn = false;
+    public Saab95(double x, double y, Direction direction, double currentSpeed, boolean isMovable, Color color, boolean turboOn, double turboValue) {
+        super(x, y, direction, currentSpeed, isMovable, 150, color, "Saab95");
+        this.turboOn = turboOn;
+        this.turboValue = turboValue;
     }
     /**
      * Turns the turbo on.
      */
-    void setTurboOn() {
-        turboOn = true;
-    }
-    /**
-     * Turns the turbo off.
-     */
-    void setTurboOff() {
-        turboOn = false;
-    }
-
+    void setTurboOn(boolean turboOn) { this.turboOn = turboOn; }
     /**
      * Calculates the speedFactor.
      * Uses turbo.
      */
     @Override
-    double speedFactor() {
-        double turbo = 1;
-        if (turboOn) turbo = 1.3;
-        return getEnginePower() * 0.01 * turbo;
-    }
-
-    /**
-     * Increments the cars speed.
-     * @param amount to multiply the speedFactor with.
-     */
-    @Override
-    void incrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
-    }
-
-    /**
-     * Decrements the speed.
-     * @param amount to multiply the speedfactor with.
-     */
-    @Override
-    void decrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
-    }
+    public double speedFactor() { return getEnginePower() * 0.01 * (getTurboOn() ? getTurboValue() : 1); }
+    public boolean getTurboOn(){ return this.turboOn; }
+    public double getTurboValue(){ return this.turboValue; }
 
 }

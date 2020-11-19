@@ -26,82 +26,25 @@ public abstract class Vehicle extends Movables {
         this.color = color;
         this.modelName = modelName;
         this.enginePower = enginePower;
-        stopEngine();
     }
-
     /**
      * Stops the car engine.
      */
     void stopEngine() {
         setCurrentSpeed(0);
     }
-
     /**
      * Starts the car engine.
      */
     void startEngine() {
         setCurrentSpeed(0.1);
     }
-
-    /**
-     *
-     * @return a calculated speedFactor.
-     */
-    double speedFactor() {
-        return getEnginePower() * 0.01;
-    }
-
-    /**
-     * Increments the speed a specified amount.
-     * @param amount to multiply the speedfactor with.
-     */
-
-    void gas(double amount) {
-        if (amount >= 0 && amount <= 1.0){
-            incrementSpeed(amount);
-        }
-        else{
-            System.out.println("Not valid amount.");
-        }
-    }
-
-    /**
-     * Decrements the speed a specified amount.
-     * @param amount to multiply the speedfactor with.
-     */
-
-    void brake(double amount) {
-        if (amount >= 0 && amount <= 1.0){
-            decrementSpeed(amount);
-        }
-        else{
-            System.out.println("Not valid amount.");
-        }
-    }
-
-    /**
-     * Increments the speed.
-     * @param amount to multiply the speedFactor with.
-     */
+    public double speedFactor(){ return 0.01; }
     @Override
-    void incrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() + amount*speedFactor());
-    }
-
-    /**
-     * Decrements the speed.
-     * @param amount to multiply the speedFactor with.
-     */
+    public double calculateSpeedChange(double amount){ return getCurrentSpeed() + amount * speedFactor(); }
     @Override
-    void decrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() - amount*speedFactor());
-    }
-
-
-    // ----------- getters and setters -----------
-
-    double getEnginePower() {
-        return enginePower;
-    }
-
+    public boolean isSpeedChangeInRange(double amount){ return -1.0 < amount && amount < 1.0; }
+    public void gas(double amount) { changeSpeed(amount); }
+    public void brake(double amount) { changeSpeed(-amount); }
+    public double getEnginePower() { return enginePower; }
 }
