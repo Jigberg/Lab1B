@@ -1,37 +1,14 @@
 package DumbAssKangarooPackage;
 
+import Carriers.Carrier;
+import Carriers.WorkshopCarrier;
+import Positions.Movables;
 import Vehicles.Vehicle;
 
 import java.util.*;
 
-public class Workshop<T> {
-    private final Deque<T> storedCars = new ArrayDeque<>();
-    private int maxCars;
-    public Workshop(int maxCars){
-        this.maxCars = maxCars;
-    }
+public class Workshop<T extends Movables> {
+    Carrier<T, Workshop<T>> carrier = new WorkshopCarrier<T>(this);
 
-    boolean isLoadable(){ return getStoredCars().size() != getMaxCars(); }
-
-    public void loadCar(T t){
-        if(isLoadable()){
-            getStoredCars().push(t);
-            ((Vehicle) t).setIsDrivable(false);
-        }
-    }
-
-    public void unloadCar(){
-        T t = getStoredCars().pop();
-        ((Vehicle) t).setIsDrivable(true);
-    }
-
-
-    Deque<T> getStoredCars(){
-        return storedCars;
-    }
-
-    int getMaxCars(){
-        return maxCars;
-    }
-
+    public Carrier<T, Workshop<T>> getCarrier(){ return this.carrier; }
 }

@@ -1,32 +1,28 @@
 package Positions;
 
-import java.awt.image.DirectColorModel;
-import java.util.Arrays;
-import java.util.List;
-
-public abstract class Positionables {
-    private double xPos; // The X position
-    private double yPos; // The Y position
+public abstract class Positionables{
+    private double x; // The X position
+    private double y; // The Y position
     private Direction direction;
 
-    public Positionables(int xPos, int yPos, Direction direction){
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public Positionables(double x, double y, Direction direction){
+        this.x = x;
+        this.y = y;
         this.direction = direction;
     }
-    double getxPos() { return xPos; }
+    public double getx() { return x; }
 
-    double getyPos() { return yPos; }
+    public double gety() { return y; }
 
-    void setxPos(double xPos) { this.xPos = xPos; }
+    public void setx(double x) { this.x = x; }
 
-    void setyPos(double yPos) { this.yPos = yPos; }
+    public void sety(double y) { this.y = y; }
 
-//    List<DumbAssKangarooPackage.Direction> getDirectionList() {
+//    List<Positions.Direction> getDirectionList() {
 //        return direction;
 //    }
 
-    Direction getDirection() {return direction; }
+    public Direction getDirection() {return direction; }
 
     public void setDirection(Direction direction){
         this.direction = direction;

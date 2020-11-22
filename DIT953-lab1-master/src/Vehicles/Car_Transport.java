@@ -1,6 +1,12 @@
 package Vehicles;
 
-import Vehicles.Vehicle;
+import Carriers.CarTransportCarrier;
+import Carriers.Carrier;
+import Carriers.ICarTransportCarrier;
+import Carriers.IFerryCarrier;
+import Positions.Direction;
+import Positions.Movables;
+import Ramps.Ramp;
 
 import java.awt.*;
 import java.util.*;
@@ -10,152 +16,65 @@ import java.util.*;
  * A class for truck Vehicles.Scania
  */
 
-public class Car_Transport extends Truck {
-    private final int maxCars = 4;
-    private final Deque<Vehicle> transportingCars = new ArrayDeque<>();
+public class Car_Transport extends Vehicle implements IFerryCarrier {
+    Carrier<ICarTransportCarrier, Car_Transport> carrier = new CarTransportCarrier(this);
+    Ramp ramp; 
 
-    public Car_Transport() {
-        super(100, Color.GRAY, "Vehicles.Scania");
+    public Car_Transport(double x, double y, Direction direction, double currentspeed, boolean isMovable, Color color, Ramp ramp) {
+        super(x, y, direction, currentspeed, isMovable, 200, color, "Car Transport AB");
+        this.ramp = ramp;
     }
-
-    /**
-     * The ramp is up when 1
-     */
-    @Override
-    void raiseRamp(int angle){
-        if (getCurrentSpeed() == 0){
-            setRampAngle(1);
-            setIsDrivable(true);
-        }else{
-            System.out.println("Can't raise ramp while moving");
-        }
-    }
-
-    /**
-     * The ramp is down when 0
-     */
-    @Override
-    void lowerRamp(int angle) {
-        if (getCurrentSpeed() == 0) {
-            setRampAngle(0);
-            setIsDrivable(false);
-        } else {
-            System.out.println("Can't lower ramp while moving");
-        }
-    }
-
-    /**
-     * checks if the loading car is in range.
-     * @param vehicle car that is being loaded.
-     * @return true if in range.
-     */
-    boolean isRightPosition(Vehicle vehicle){
-        switch (getDirection()) {
-            case NORTH: if (vehicle.getyPos() < getyPos() && (getyPos()- vehicle.getyPos() < 3) && Math.abs(getxPos() - vehicle.getxPos()) < 0.001 ){ return true;}
-            case EAST: if (vehicle.getxPos() < getxPos() && (getxPos()- vehicle.getxPos() < 3) && Math.abs(getyPos() - vehicle.getyPos()) < 0.001 ){ return true;}
-            case SOUTH : if (vehicle.getyPos() > getyPos() && (getyPos()- vehicle.getyPos() < -3) && Math.abs(getxPos() - vehicle.getxPos()) > -0.001 ){ return true;}
-            case WEST : if (vehicle.getxPos() > getxPos() && (getyPos()- vehicle.getyPos() < -3) && Math.abs(getyPos() - vehicle.getyPos()) < 0.001 ){ return true;}
-            default :
-            System.out.print("not right position");
-            return false;
-        }
-    }
-
-    /**
-     * Checks if car can be loaded onto Vehicles.Car_Transport.
-     * @param vehicle car that is being loaded.
-     * @return true if car is loadable.
-     */
-    public boolean isLoadable(Vehicle vehicle){
-        if (getDirection() != vehicle.getDirection()){ return false; }
-        if (vehicle instanceof Truck){ return false; }
-        if (getRampAngle() != 0){ return false; }
-        if (getTransportingCars().size() == getMaxCars()){ return false; }
-        if (vehicle.getCurrentSpeed() != 0 || getCurrentSpeed() != 0){ return false; }
-        if (!isRightPosition(vehicle)){ return false; }
-        return true;
-    }
-
-    /**
-     * Loads car onto Vehicles.Car_Transport.
-     * @param vehicle car that is being loaded.
-     */
-    public void loadCar(Vehicle vehicle){
-        if (isLoadable(vehicle)) {
-            getTransportingCars().push(vehicle);
-            vehicle.setIsDrivable(false);
-        } else {
-            System.out.println("Can't load car");
-        }
-    }
-
-    /**
-     * Unloads car and assigns it the position and direction of the Vehicles.Car_Transport.
-     */
-    public void unloadCar(){
-            Vehicle vehicle = getTransportingCars().pop();
-        if (getCurrentSpeed() == 0 && getTransportingCars().size() != 0 && getRampAngle() == 0) {
-            getTransportingCars().remove(vehicle);
-            vehicle.setIsDrivable(true);
-        } else {
-            System.out.println("Can't unload car");
-        }
-    }
-
     /**
      * Moves the car depending on direction. Also moves cars on transport.
      */
     @Override
     public void move() {
-        if(getIsDrivable()) {
+        if(getIsMovable()) {
             switch (getDirection()) {
-                case NORTH -> setyPos(getyPos() + getCurrentSpeed());
-                case EAST -> setxPos(getxPos() + getCurrentSpeed());
-                case SOUTH -> setyPos(getyPos() - getCurrentSpeed());
-                case WEST -> setxPos(getxPos() - getCurrentSpeed());
+                case NORTH -> sety(gety() + getCurrentSpeed());
+                case EAST -> setx(getx() + getCurrentSpeed());
+                case SOUTH -> sety(gety() - getCurrentSpeed());
+                case WEST -> setx(getx() - getCurrentSpeed());
                 default -> System.out.print("non valid direction!");
             }
         }
-        for(Vehicle vehicle : getTransportingCars()){
-            vehicle.setxPos(getxPos());
-            vehicle.setyPos(getyPos());
+        for(ICarTransportCarrier load : getCarrier().getLoad()){
+            ((Movables) load).setx(getx());
+            ((Movables) load).sety(gety());
         }
     }
-
-//    void getIsDrivable(){
-
-//    }
 
     /**
      * Turns the car left. Also moves cars in transport.
      */
     @Override
     public void turnLeft() {
-        Collections.rotate(getDirectionList(), 1);
-        for(Vehicle vehicle : getTransportingCars()){
-            vehicle.setDirection(getDirection());
+        switch (getDirection()) {
+            case NORTH -> setDirection(Direction.WEST);
+            case EAST -> setDirection(Direction.NORTH);
+            case SOUTH -> setDirection(Direction.EAST);
+            case WEST -> setDirection(Direction.SOUTH);
+        }
+        for(Object load: getCarrier().getLoad()){
+            ((Movables) load).setDirection(getDirection());
         }
     }
 
     /**
      * Turns the car right. Also moves cars in transport.
      */
-    @Override
     public void turnRight() {
-        Collections.rotate(getDirectionList(), -1);
-        for(Vehicle vehicle : getTransportingCars()){
-            vehicle.setDirection(getDirection());
+        switch (getDirection()) {
+            case NORTH -> setDirection(Direction.EAST);
+            case EAST -> setDirection(Direction.SOUTH);
+            case SOUTH -> setDirection(Direction.WEST);
+            case WEST -> setDirection(Direction.NORTH);
+        }
+        for(Object load: getCarrier().getLoad()){
+            ((Movables) load).setDirection(getDirection());
         }
     }
 
-    int getMaxCars() {
-        return maxCars;
-    }
-
-   Deque<Vehicle> getTransportingCars(){
-        return transportingCars;
-    }
-
-
-
+    public Carrier<ICarTransportCarrier, Car_Transport> getCarrier(){ return this.carrier; }
+    public Ramp getRamp(){return this.ramp; }
 }
