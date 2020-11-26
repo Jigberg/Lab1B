@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-11-26T12:05:36.586Z" agent="5.0 (Windows)" etag="5ntUktuX-4dXe6uCa-xC" version="13.10.3" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-26T12:08:31.217Z" agent="5.0 (Windows)" etag="sw_w6UDamd4iKaofilj3" version="13.10.3" type="github">
   <diagram id="itXG3QlIdruU95rDI2Iw" name="Page-1">
-    <mxGraphModel dx="1774" dy="974" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="2179" dy="1380" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -46,10 +46,10 @@
         <mxCell id="PHVw_ghLn9qSNtVH2p7O-27" value="+ stopEngine : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="UUQaVHgVByvrkGrUGQ-f-149">
           <mxGeometry y="138" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="PHVw_ghLn9qSNtVH2p7O-28" value="+ startEngine : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="UUQaVHgVByvrkGrUGQ-f-149">
+        <mxCell id="PHVw_ghLn9qSNtVH2p7O-28" value="+ gas(Double) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="UUQaVHgVByvrkGrUGQ-f-149">
           <mxGeometry y="164" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="PHVw_ghLn9qSNtVH2p7O-29" value="+ startEngine : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="UUQaVHgVByvrkGrUGQ-f-149">
+        <mxCell id="PHVw_ghLn9qSNtVH2p7O-29" value="+ brake(Double) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="UUQaVHgVByvrkGrUGQ-f-149">
           <mxGeometry y="190" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="UUQaVHgVByvrkGrUGQ-f-154" value="CarTransport" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
