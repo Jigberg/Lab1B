@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-11-26T12:08:31.217Z" agent="5.0 (Windows)" etag="sw_w6UDamd4iKaofilj3" version="13.10.3" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-26T12:19:20.959Z" agent="5.0 (Windows)" etag="T4FwCnOL36CeAQaA9fxc" version="13.10.3" type="github">
   <diagram id="itXG3QlIdruU95rDI2Iw" name="Page-1">
-    <mxGraphModel dx="2179" dy="1380" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="2389" dy="1590" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -325,12 +325,6 @@
             <mxPoint x="-340" y="522.7499999999998" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="UUQaVHgVByvrkGrUGQ-f-238" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;" parent="1" source="UUQaVHgVByvrkGrUGQ-f-146" target="UUQaVHgVByvrkGrUGQ-f-231" edge="1">
-          <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="47.24358974358984" y="244" as="sourcePoint" />
-            <mxPoint x="201.08974358974365" y="340" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="UUQaVHgVByvrkGrUGQ-f-262" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;" parent="1" source="UUQaVHgVByvrkGrUGQ-f-203" target="UUQaVHgVByvrkGrUGQ-f-180" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="-900" y="212.88444444444434" as="sourcePoint" />
@@ -365,12 +359,6 @@
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="12.60606060606051" y="276" as="sourcePoint" />
             <mxPoint x="16.60606060606051" y="342" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="PHVw_ghLn9qSNtVH2p7O-6" value="" style="endArrow=open;endFill=1;endSize=12;html=1;" edge="1" parent="1" source="UUQaVHgVByvrkGrUGQ-f-146" target="UUQaVHgVByvrkGrUGQ-f-231">
-          <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="84.42307692307668" y="276" as="sourcePoint" />
-            <mxPoint x="160.57692307692287" y="320" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="PHVw_ghLn9qSNtVH2p7O-7" value="Turbo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
@@ -408,6 +396,15 @@
         </mxCell>
         <mxCell id="PHVw_ghLn9qSNtVH2p7O-23" value="&lt;div&gt;antingen skapar vi supersub relation mellan Postionables och Movables, &lt;br&gt;&lt;/div&gt;&lt;div&gt;eller innehåller (composition) Movables en Postionables&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
           <mxGeometry x="-520" y="-250" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PHVw_ghLn9qSNtVH2p7O-30" value="" style="endArrow=open;endFill=1;endSize=12;html=1;" edge="1" parent="1" source="UUQaVHgVByvrkGrUGQ-f-146" target="UUQaVHgVByvrkGrUGQ-f-231">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="181.92307692307713" y="260.0000000000002" as="sourcePoint" />
+            <mxPoint x="258.0769230769233" y="304.0000000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PHVw_ghLn9qSNtVH2p7O-31" value="ska vi köra subtyping eller compostion" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="-100" y="650" width="220" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
