@@ -1,52 +1,25 @@
 package Vehicles;
 
 import java.awt.*;
-import DumbAssKangarooPackage.Direction;
+
+import Carriers.IFerryCarrier;
+import Positions.Direction;
+import Ramps.Ramp;
+import Ramps.ScaniaRamp;
 
 /**
  * @author Lukas, Emil, Martin.
  * A class for truck Vehicles.Scania
  */
 
-public class Scania extends Vehicle {
-    private double rampAngle;
+public class Scania extends Vehicle implements IFerryCarrier {
+    private Ramp ramp;
 
-    public Scania(int xPos, int yPos, Direction direction, double currentSpeed, boolean isMovable, double maxSpeed, double enginePower, Color color, String modelName) {
+    public Scania(int xPos, int yPos, Direction direction, double currentSpeed, boolean isMovable, double maxSpeed, double enginePower, Color color, String modelName, ScaniaRamp ramp) {
         super(xPos, yPos, direction.NORTH, 0, true, 100, Color.DARK_GRAY, "Vehicles.Scania");
+        this.ramp = ramp;
     }
 
-    /**
-     * Lowers platform.
-     * @param angle to lower platform.
-     */
-    @Override
-    void lowerRamp(int angle) {
-        if (getCurrentSpeed() == 0) {
-            setRampAngle(Math.max(getRampAngle() - angle, 0));
-        } else {
-            System.out.println("Can't lower ramp while moving");
-        }
-    }
-
-    /**
-     * Raises platform.
-     * @param angle to raise platform.
-     */
-    @Override
-    void raiseRamp(int angle){
-        if (getCurrentSpeed() == 0){
-            setRampAngle(Math.min(getRampAngle() + angle, 70));
-        }else{
-            System.out.println("Can't raise ramp while moving");
-        }
-    }
-
-    public double getRampAngle(){
-        return rampAngle;
-    }
-
-    public void setRampAngle(double angle){
-        this.rampAngle = angle;
-    }
+    Ramp getRamp(){ return ramp; }
 }
 

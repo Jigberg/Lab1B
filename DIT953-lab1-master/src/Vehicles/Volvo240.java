@@ -1,5 +1,9 @@
 package Vehicles;
 
+import Carriers.ICarTransportCarrier;
+import Carriers.IFerryCarrier;
+import Positions.Direction;
+
 import java.awt.*;
 
 /**
@@ -7,46 +11,26 @@ import java.awt.*;
  * A class for car model Vehicles.Volvo240
  */
 
-public class Volvo240 extends Vehicle {
-    private final static double trimFactor = 1.25;
+public class Volvo240 extends Vehicle implements ICarTransportCarrier, IFerryCarrier{
+    private double trimFactor;
 
     /**
      * Constructor for class.
      */
-    public Volvo240() {
-        super(100, Color.black, "Vehicles.Volvo240");
+    public Volvo240(double x, double y, Direction direction, double currentSpeed, boolean isMovable, Color color, double trimFactor) {
+        super(x, y, direction, currentSpeed, isMovable, 200, color, "Volvo240");
+        this.trimFactor = trimFactor;
     }
-
-     boolean isDrivable(){
-        return true;
-    }
-
     /**
      * Calculates the speedfactor.
      * Uses trimFactor.
      */
     @Override
-    double speedFactor() {
+    public double speedFactor() {
         return getEnginePower() * 0.01 * trimFactor;
     }
 
-    /**
-     * Increments the cars speed.
-     * @param amount to multiply the speedfactor with.
-     */
-    @Override
-    void incrementSpeed(double amount) {
-        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
-    }
 
-    /**
-     * Decrements the cars speed.
-     * @param amount to multiply the speedfactor with.
-     */
-    @Override
-    void decrementSpeed(double amount) {
-        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
 
-    }
 
 }
