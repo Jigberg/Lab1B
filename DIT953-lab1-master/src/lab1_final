@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-11-26T12:19:20.959Z" agent="5.0 (Windows)" etag="T4FwCnOL36CeAQaA9fxc" version="13.10.3" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-26T12:20:13.080Z" agent="5.0 (Windows)" etag="UYyaD1_bGoAOBiQ2bem_" version="13.10.3" type="github">
   <diagram id="itXG3QlIdruU95rDI2Iw" name="Page-1">
-    <mxGraphModel dx="2389" dy="1590" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="3754" dy="1579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -405,6 +405,9 @@
         </mxCell>
         <mxCell id="PHVw_ghLn9qSNtVH2p7O-31" value="ska vi köra subtyping eller compostion" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
           <mxGeometry x="-100" y="650" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="PHVw_ghLn9qSNtVH2p7O-32" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="-80" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
